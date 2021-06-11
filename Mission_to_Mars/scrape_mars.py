@@ -4,13 +4,13 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def scrape_info():
+def scrape_mars_news():
     # Set up Splinter
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
     # Visit visitcostarica.herokuapp.com
-    url = "https://visitcostarica.herokuapp.com/"
+    mars_news_url="https://redplanetscience.com"
     browser.visit(url)
 
     time.sleep(1)

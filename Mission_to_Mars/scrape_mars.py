@@ -3,20 +3,36 @@ from bs4 import BeautifulSoup as bs
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 
-
-def scrape_mars_news():
+def scrape_all_pages():
     # Set up Splinter
+    # ADD IN THE OTHER CRAP HERE #
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    mars_news_browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=False)
 
-    # Visit visitcostarica.herokuapp.com
+    # ADD IN THE OTHER CRAP HERE #
+    news_title, p_text = scrape_mars_news(browser)
+
+    # ADD IN THE OTHER CRAP HERE #
+    mars_data = {
+        "news_title": news_title,
+        "news_paragraph": p_text
+    }
+
+    browser.quit()
+    return mars_data
+
+#################### SCRAPE ###############################
+
+# MARS NEWS SECTION #
+def scrape_mars_news(browser):
+    
     mars_news_url = "https://redplanetscience.com"
-    mars_news_browser.visit(mars_news_url)
+    browser.visit(mars_news_url)
 
     time.sleep(1)
 
     # Scrape page into Soup
-    mars_news_html = mars_news_browser.html
+    mars_news_html = browser.html
     mars_news_soup = bs(mars_news_html, 'html.parser')
 
     # Get the latest news title
@@ -25,14 +41,17 @@ def scrape_mars_news():
     # Get the latest news paragraph
     p_text = mars_news_soup.find('div' , class_='article_teaser_body').text
 
-    # Store data in a dictionary
-    mars_data = {
-        "news_title": news_title,
-        "news_paragraph": p_text
-    }
+    # # Store data in a dictionary
+    # mars_data = {
+    #     "news_title": news_title,
+    #     "news_paragraph": p_text
+    # }
 
     # Close the browser after scraping
-    mars_news_browser.quit()
+    browser.quit()
 
     # Return results
-    return mars_data
+    return news_title, p_text
+
+
+###  DO THE NEXT SECTION HERE ######

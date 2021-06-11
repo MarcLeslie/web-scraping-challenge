@@ -1,39 +1,46 @@
-from flask import Flask, render_template, redirect
-from flask_pymongo import PyMongo
-import WHAT THE FUCK????????
-
-# Create an instance of Flask
-app = Flask(__name__)
-
-# Use PyMongo to establish Mongo connection
-mongo = PyMongo(app, uri="mongodb://localhost:27017/weather_app")
+from splinter import Browser
+from bs4 import BeautifulSoup as bs
+import time
+from webdriver_manager.chrome import ChromeDriverManager
 
 
-# Route to render index.html template using data from Mongo
-@app.route("/")
-def home():
+def scrape_info():
+    # Set up Splinter
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=False)
 
-    # Find one record of data from the mongo database
-    destination_data = mongo.db.collection.find_one()
+    # Visit visitcostarica.herokuapp.com
+    url = "https://visitcostarica.herokuapp.com/"
+    browser.visit(url)
 
-    # Return template and data
-    return render_template("index.html", vacation=destination_data)
+    time.sleep(1)
 
+    # Scrape page into Soup
+    html = browser.html
+    soup = bs(html, "html.parser")
 
-# Route that will trigger the scrape function
-@app.route("/scrape")
-def scrape():
+    # Get the average temps
+    avg_temps = soup.find('div', id='weather')
 
-    # Run the scrape function
-    costa_data = scrape_costa.scrape_info()
+    # Get the min avg temp
+    min_temp = avg_temps.find_all('strong')[0].text
 
-    # Update the Mongo database using update and upsert=True
-    mongo.db.collection.update({}, costa_data, upsert=True)
+    # Get the max avg temp
+    max_temp = avg_temps.find_all('strong')[1].text
 
-    # Redirect back to home page
-    return redirect("/")
+    # BONUS: Find the src for the sloth image
+    relative_image_path = soup.find_all('img')[2]["src"]
+    sloth_img = url + relative_image_path
 
+    # Store data in a dictionary
+    costa_data = {
+        "sloth_img": sloth_img,
+        "min_temp": min_temp,
+        "max_temp": max_temp
+    }
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    # Close the browser after scraping
+    browser.quit()
 
+    # Return results
+    return costa_data

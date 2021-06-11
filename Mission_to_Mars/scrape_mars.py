@@ -127,9 +127,9 @@ def scrape_mars_hemi(browser):
         mars_hemi2_soup = bs(mars_hemi2_html, 'html.parser')
         new_blank_dict["title"] =  mars_hemi2_soup.find('h2', class_='title').text.rsplit(' ' , 1)[0] 
         img_url1 = mars_hemi2_soup.find('img', class_='wide-image')['src']
-        new_blank_dict['img_url'] = (f'https://marshemispheres.com/{img_url1}')
+        new_blank_dict['img_url'] = (f'{mars_hemi_url_list}/{img_url1}')
         mars_hemi_image_urls.append( new_blank_dict)
-    mars_hemi_image_urls
+    # mars_hemi_image_urls
 
     # Return results
     return mars_hemi_image_urls

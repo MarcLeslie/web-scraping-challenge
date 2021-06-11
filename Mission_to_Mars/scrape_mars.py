@@ -7,40 +7,32 @@ from webdriver_manager.chrome import ChromeDriverManager
 def scrape_mars_news():
     # Set up Splinter
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    mars_news_browser = Browser('chrome', **executable_path, headless=False)
 
     # Visit visitcostarica.herokuapp.com
-    mars_news_url="https://redplanetscience.com"
-    browser.visit(url)
+    mars_news_url = "https://redplanetscience.com"
+    mars_news_browser.visit(mars_news_url)
 
     time.sleep(1)
 
     # Scrape page into Soup
-    html = browser.html
-    soup = bs(html, "html.parser")
+    mars_news_html = mars_news_browser.html
+    mars_news_soup = bs(mars_news_html, 'html.parser')
 
-    # Get the average temps
-    avg_temps = soup.find('div', id='weather')
+    # Get the latest news title
+    news_title = mars_news_soup.find('div' , class_='content_title').text
 
-    # Get the min avg temp
-    min_temp = avg_temps.find_all('strong')[0].text
-
-    # Get the max avg temp
-    max_temp = avg_temps.find_all('strong')[1].text
-
-    # BONUS: Find the src for the sloth image
-    relative_image_path = soup.find_all('img')[2]["src"]
-    sloth_img = url + relative_image_path
+    # Get the latest news paragraph
+    p_text = mars_news_soup.find('div' , class_='article_teaser_body').text
 
     # Store data in a dictionary
-    costa_data = {
-        "sloth_img": sloth_img,
-        "min_temp": min_temp,
-        "max_temp": max_temp
+    mars_data = {
+        "news_title": news_title,
+        "news_paragraph": p_text
     }
 
     # Close the browser after scraping
-    browser.quit()
+    mars_news_browser.quit()
 
     # Return results
-    return costa_data
+    return mars_data

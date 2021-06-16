@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
-import scrape_mars
+import scrape_mars  # IS IT A PROBLEM THAT THIS CANNOT BE RECOGNIZED???????? ####################################################
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -31,8 +31,9 @@ def scrape():
     mongo.db.collection.update({}, mars_data, upsert=True)
 
     # Redirect back to home page/route
-    return redirect("/", code=302)
-
+    # return redirect("/", code=302)
+    return redirect("/")
+    
 # THIS MUST BE AT THE END TO CLOSE IT
 if __name__ == "__main__":
     app.run(debug=True)

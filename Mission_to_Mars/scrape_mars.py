@@ -54,8 +54,8 @@ def scrape_mars_news(browser):
 
 ######################### MARS CURRENT IMG SECTION #############################################################
 def scrape_mars_img(browser):
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    # executable_path = {'executable_path': ChromeDriverManager().install()}
+    # browser = Browser('chrome', **executable_path, headless=False)
     mars_img_url = "https://spaceimages-mars.com"
     browser.visit(mars_img_url)
 
@@ -76,8 +76,8 @@ def scrape_mars_img(browser):
 
 ################################ MARS FACTS SECTION ############################################################
 def scrape_mars_facts(browser):
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    # executable_path = {'executable_path': ChromeDriverManager().install()}
+    # browser = Browser('chrome', **executable_path, headless=False)
     mars_facts_url = "https://galaxyfacts-mars.com"
     tables = pd.read_html(mars_facts_url)
 
@@ -97,8 +97,8 @@ def scrape_mars_facts(browser):
 
 ################################ MARS HEMI IMAGES(4) SECTION ############################################################
 def scrape_mars_hemi(browser):
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    # executable_path = {'executable_path': ChromeDriverManager().install()}
+    # browser = Browser('chrome', **executable_path, headless=False)
     mars_hemi_url = 'https://marshemispheres.com'
     browser.visit(mars_hemi_url)
 
@@ -114,7 +114,7 @@ def scrape_mars_hemi(browser):
     for x in finder:
         url = x.find('a')['href']
         mars_hemi_url_list.append(f'https://marshemispheres.com/{url}')
-    mars_hemi_url_list
+    # mars_hemi_url_list
 
     # STEP TWO
     mars_hemi_image_urls=[]
@@ -127,9 +127,13 @@ def scrape_mars_hemi(browser):
         mars_hemi2_soup = bs(mars_hemi2_html, 'html.parser')
         new_blank_dict["title"] =  mars_hemi2_soup.find('h2', class_='title').text.rsplit(' ' , 1)[0] 
         img_url1 = mars_hemi2_soup.find('img', class_='wide-image')['src']
-        new_blank_dict['img_url'] = (f'{mars_hemi_url_list}/{img_url1}')
+        new_blank_dict['img_url'] = (f'{mars_hemi_url}/{img_url1}')
         mars_hemi_image_urls.append( new_blank_dict)
     # mars_hemi_image_urls
 
     # Return results
     return mars_hemi_image_urls
+
+# if __name__ == "__main__":
+print(scrape_all_pages())
+

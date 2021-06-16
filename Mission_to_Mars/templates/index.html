@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- <meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" /> -->
   
 <!-- HEAD -->
   <head>
@@ -67,25 +69,27 @@
     </div>
     <br>
     <br>
-
-
-    <!-- MARS HEMI IMAGES (4)-->
-    <!-- LOOK FOR A CARD OR CONTAINER TO HOLD THE IMAGE - WHATEVER IS ON LINE 76 WILL MAKE 1 IMAGE PER CARD-->
-    <!-- LOOK AT MONGO DB COLLECTION TO SEE WHAT THIS ARRAY LOOKS LIKE -->
-    <!-- hemisphere.img_url | default('static/images/error.png', true   YOU CAN PUT THIS INSIDE THE DOUBLE CURLIES -->
-    <!-- OR TRY <img src="static/images/{{ employee.profile_image }}" alt={{ employee.name }} width="120" height="90" />  -->
-
-
-    <ul style="list-style: none;">
-      {% for hemisphere in mars_hemi_image_urls %}
-        <li> <img src="static/images/{{ hemisphere.mars_hemi_image_urls }}" alt={{ hemisphere.url }} width="120" height="90" /> </li>
-      {% endfor %}
-    </ul>
-
+   
+ 
+    <div class="container text-center">
+      <h1 class="jumbotron">Mars Hemispheres</h1>
+      <div>
+        <ul style="list-style: none;">
+          {% for hemisphere in mars.mars_hemi_image_urls %}
+            <h1> {{hemisphere.title}} </h1>
+            <img src="{{ hemisphere.img_url }}" alt="***" >
+            
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   
-    <!-- <img src="{{mars.mars_hemi_image_urls}}" alt="">
-    <br>
-    <br> -->
+
+    
+  
+
+
+    
 
 
   </div>

@@ -66,18 +66,19 @@
       <br>
       
       <!-- HEMIS -->
-      <div class="row">
-        <div class= "col-md-12">
-          <h2 class="custom">Mars Hemispheres</h2>
-          <div>
+      <h2 class="custom">Mars Hemispheres</h2>
+      <div class = "container">
+        <div class="row">
+          <div class= "col-md-15">
             <ul style="list-style: none;">
               {% for hemisphere in mars.mars_hemi_image_urls %}
-              <a><img src="{{ hemisphere.img_url }}" class="bottom-img"> {{hemisphere.title}}</a>
+              <a><img src="{{ hemisphere.img_url }}" class="bottom-img"> <span class="bottom-title">{{hemisphere.title}}</span> </a>
               {% endfor %}
             </ul>
-          </div>
-        </div> 
-      </div>    
+          </div> 
+        </div>
+      </div>
+
     </div>
   </div>
 </body>

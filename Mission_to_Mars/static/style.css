@@ -22,8 +22,13 @@ header {
     padding: 20px;
 }
 
-.bottom-img {
-    width: 150px; 
+
+/* Featured image plus Facts table */
+.left-side{
+    position: relative;
+    float: left; 
+    padding-right: 20px;
+    padding-left: 0px;
 }
 
 .current-img {
@@ -36,10 +41,17 @@ header {
     padding-left: 20px;
     padding-right: 0px;
 }
+/* Featured image plus Facts table */
 
-.left-side{
-    position: relative;
-    float: left; 
-    padding-right: 20px;
-    padding-left: 0px;
+
+
+/* BOTTOM 4 IMAGES */
+.bottom-img {
+    width: 170px; 
+    
 }
+
+.bottom-title{
+    font-size: 10px;
+}
+/* BOTTOM 4 IMAGES */

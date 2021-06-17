@@ -40,32 +40,39 @@
         </div>   
       </div>
 
+      <br>
+      
+
       <!-- CURRENT IMAGE AND FACTS-->
-      <div class="row">
-        <div class= "col-md-12">
-          <!-- CURRENT IMG -->
-          <div class= "col-md-4">
+      <div class = "container">
+        <div class="row">
+          <div class= "col-md-5 left-side">  <!-- CURRENT IMG -->
             <h2>Featured Mars Image</h2>
-            <img src="{{mars.featured_image}}" alt=""> 
+            <img src="{{mars.featured_image}}" alt="" class="current-img"> 
           </div>    
 
-          <!-- MARS FACTS-->
-          <div class= "col-md-6">
+          <div class = "col-md-1">
+
+          </div>
+
+          <div class= "col-md-5 table-right">  <!-- MARS FACTS-->
             <h2>Mars Facts</h2>
             {{ mars.mars_facts | safe}}
-          </div>
+          </div>  
         </div>
       </div>
 
+      <br>
+      <br>
+      
       <!-- HEMIS -->
       <div class="row">
         <div class= "col-md-12">
-          <h2>Mars Hemispheres</h2>
+          <h2 class="custom">Mars Hemispheres</h2>
           <div>
             <ul style="list-style: none;">
               {% for hemisphere in mars.mars_hemi_image_urls %}
-              <img src="{{ hemisphere.img_url }}" alt="" class="bottom-img">   
-              <h5> {{hemisphere.title}} </h5>
+              <a><img src="{{ hemisphere.img_url }}" class="bottom-img"> {{hemisphere.title}}</a>
               {% endfor %}
             </ul>
           </div>

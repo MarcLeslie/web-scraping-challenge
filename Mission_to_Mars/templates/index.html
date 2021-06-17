@@ -7,16 +7,20 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
-    <title>Mission to Mars</title>
+    <title>Hey, who wants to go Mars?</title>
   </head>
 
 <!-- NAV BAR -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- ISSUE TO FIX: WHY WILL THIS HEADER AND BUTTON NOT CENTER-->
+      <ul>
+        <h1>Mission to Mars</h1>
+        <a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a>
+      </ul>
     </nav>
   </header>
 
@@ -24,56 +28,51 @@
 <!-- BODY -->
 
 <body>
-  <div class="container-fluid">
-    <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
-    </div>
-
-    <!-- NEWS-->
-    <h2>Latest Mars News</h2>
-    <h4>Mars News: {{mars.news_title}}</h4>
-    <p>{{mars.news_paragraph}}</p>  
-    <br>
-    <br>
-    
-    <!-- CURRENT IMG -->
-    <h2>Featured Mars Image</h2>
-    <img src="{{mars.featured_image}}" alt="">
-    <br>
-    <br>
-
-    <!-- MARS FACTS-->
-    <div class="col-md-3">
-      <h2>Mars Facts</h2>
-      {{ mars.mars_facts | safe}}
-    </div>
-    <br>
-    <br>
-   
- 
-    <div class="container text-center">
-      <h2 class="jumbotron">Mars Hemispheres</h2>
-      <div>
-        <ul style="list-style: none;">
-          {% for hemisphere in mars.mars_hemi_image_urls %}
-            <h1> {{hemisphere.title}} </h1>
-            <img src="{{ hemisphere.img_url }}" alt="***" >
-            
-          {% endfor %}
-        </ul>
+  <div class = "cont-adjust">
+    <div class="container">
+      
+      <!-- NEWS-->
+      <div class= "row">      
+        <div class= "col-md-12">
+          <h2>Latest Mars News</h2>
+          <h4>Mars News: {{mars.news_title}}</h4>
+          <p>{{mars.news_paragraph}}</p>  
+        </div>   
       </div>
+
+      <!-- CURRENT IMAGE AND FACTS-->
+      <div class="row">
+        <div class= "col-md-12">
+          <!-- CURRENT IMG -->
+          <div class= "col-md-4">
+            <h2>Featured Mars Image</h2>
+            <img src="{{mars.featured_image}}" alt=""> 
+          </div>    
+
+          <!-- MARS FACTS-->
+          <div class= "col-md-6">
+            <h2>Mars Facts</h2>
+            {{ mars.mars_facts | safe}}
+          </div>
+        </div>
+      </div>
+
+      <!-- HEMIS -->
+      <div class="row">
+        <div class= "col-md-12">
+          <h2>Mars Hemispheres</h2>
+          <div>
+            <ul style="list-style: none;">
+              {% for hemisphere in mars.mars_hemi_image_urls %}
+              <img src="{{ hemisphere.img_url }}" alt="" class="bottom-img">   
+              <h5> {{hemisphere.title}} </h5>
+              {% endfor %}
+            </ul>
+          </div>
+        </div> 
+      </div>    
     </div>
-  
-
-    
-  
-
-
-    
-
-
   </div>
-  
 </body>
+
 </html>

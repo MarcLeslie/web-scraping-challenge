@@ -13,3 +13,11 @@ h2 {
     text-decoration-thickness: 2px;
 }
 
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.bottom-img {
+    width: 150px; 
+}

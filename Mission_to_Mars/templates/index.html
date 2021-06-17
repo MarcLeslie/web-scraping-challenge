@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
 
  
 <!-- HEAD -->
@@ -7,20 +9,22 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
-    <title>Hey, who wants to go Mars?</title>
+    <title>Hey, who wants to go to Mars?</title>
   </head>
 
 <!-- NAV BAR -->
+
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- ISSUE TO FIX: WHY WILL THIS HEADER AND BUTTON NOT CENTER-->
-      <ul>
-        <h1>Mission to Mars</h1>
+
+      
+        <h1 class="logo">Mission to Mars</h1>
+        <div class = "test">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a>
-      </ul>
+      </div>
     </nav>
   </header>
 
@@ -46,18 +50,19 @@
       <!-- CURRENT IMAGE AND FACTS-->
       <div class = "container">
         <div class="row">
-          <div class= "col-md-5 left-side">  <!-- CURRENT IMG -->
+          <div class= "col-md-6 left-side">  <!-- CURRENT IMG -->
             <h2>Featured Mars Image</h2>
             <img src="{{mars.featured_image}}" alt="" class="current-img"> 
           </div>    
 
           <div class = "col-md-1">
-
           </div>
 
-          <div class= "col-md-5 table-right">  <!-- MARS FACTS-->
-            <h2>Mars Facts</h2>
-            {{ mars.mars_facts | safe}}
+          <div class= "col-md-4">  <!-- MARS FACTS TABLE IS AN OBJECT SO CONTENTS CANNOT BE CENTERED-->
+            <div class="row" id="mars_table">
+              <h2>Mars Facts</h2>
+              {{ mars.mars_facts | safe}}
+            </div>
           </div>  
         </div>
       </div>
@@ -69,13 +74,21 @@
       <h2 class="custom">Mars Hemispheres</h2>
       <div class = "container">
         <div class="row">
-          <div class= "col-md-15">
-            <ul style="list-style: none;">
+          
+            
               {% for hemisphere in mars.mars_hemi_image_urls %}
-              <a><img src="{{ hemisphere.img_url }}" class="bottom-img"> <span class="bottom-title">{{hemisphere.title}}</span> </a>
+              <div class="col-md-3">
+                <div class="thumbnail">
+                  <img src="{{ hemisphere.img_url }}" class="bottom-img"> 
+                    <div class="caption">
+                      <h4 class="bottom-title">{{hemisphere.title}}</h4> 
+                    </div>
+                </div>
+              </div>
               {% endfor %}
-            </ul>
-          </div> 
+
+            
+          
         </div>
       </div>
 

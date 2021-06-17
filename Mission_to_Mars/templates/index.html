@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="expires" content="-1" />
-  
+
+ 
 <!-- HEAD -->
   <head>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="../static/stylesheet.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <title>Mission to Mars</title>
-
   </head>
 
 <!-- NAV BAR -->
@@ -21,25 +17,6 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-  
-      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Comparisons.html">Comparisons</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Data.html">Data</a>
-          </li> -->
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Plots
-            </a>
-          </li> -->
-        <!-- </ul>
-      </div> -->
     </nav>
   </header>
 
@@ -54,19 +31,21 @@
     </div>
 
     <!-- NEWS-->
-    <h2>Mars News: {{mars.news_title}}</h2>
+    <h2>Latest Mars News</h2>
+    <h4>Mars News: {{mars.news_title}}</h4>
     <p>{{mars.news_paragraph}}</p>  
     <br>
     <br>
     
     <!-- CURRENT IMG -->
+    <h2>Featured Mars Image</h2>
     <img src="{{mars.featured_image}}" alt="">
     <br>
     <br>
 
     <!-- MARS FACTS-->
     <div class="col-md-3">
-      <h3>Mars Facts</h3>
+      <h2>Mars Facts</h2>
       {{ mars.mars_facts | safe}}
     </div>
     <br>
@@ -74,7 +53,7 @@
    
  
     <div class="container text-center">
-      <h1 class="jumbotron">Mars Hemispheres</h1>
+      <h2 class="jumbotron">Mars Hemispheres</h2>
       <div>
         <ul style="list-style: none;">
           {% for hemisphere in mars.mars_hemi_image_urls %}

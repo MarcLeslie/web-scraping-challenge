@@ -1,3 +1,9 @@
 h1 {
-    color: blue;
+    color: rgb(255, 0, 43);
+    text-align: left;
+
+}
+
+h2 {
+    text-decoration: underline;
 }

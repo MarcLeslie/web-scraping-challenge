@@ -6,17 +6,17 @@ import pandas as pd
 
 def scrape_all_pages():
     # Set up Splinter
-    # ADD IN THE OTHER CRAP HERE #
+    # You only need this here, once #
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    # ADD IN THE OTHER CRAP HERE #
+    # Collect all results here #
     news_title, news_paragraph = scrape_mars_news(browser)
     featured_image_url2 = scrape_mars_img(browser)
     mars_facts = scrape_mars_facts(browser)
     mars_hemi_image_urls = scrape_mars_hemi(browser)
 
-    # ADD IN THE OTHER CRAP HERE #
+    # Collect all results here #
     mars_data = {
         "news_title": news_title,
         "news_paragraph": news_paragraph,
@@ -54,8 +54,6 @@ def scrape_mars_news(browser):
 
 ######################### MARS CURRENT IMG SECTION #############################################################
 def scrape_mars_img(browser):
-    # executable_path = {'executable_path': ChromeDriverManager().install()}
-    # browser = Browser('chrome', **executable_path, headless=False)
     mars_img_url = "https://spaceimages-mars.com"
     browser.visit(mars_img_url)
 
@@ -76,14 +74,12 @@ def scrape_mars_img(browser):
 
 ################################ MARS FACTS SECTION ############################################################
 def scrape_mars_facts(browser):
-    # executable_path = {'executable_path': ChromeDriverManager().install()}
-    # browser = Browser('chrome', **executable_path, headless=False)
     mars_facts_url = "https://galaxyfacts-mars.com"
     tables = pd.read_html(mars_facts_url)
 
     time.sleep(1)
 
-    # HERE IS YOUR CODE, DUMMY
+    # Here is your code
     mars_df = tables[0]
     mars_df.columns = ["Mars-Earth Comparison", "Mars", "Earth"]
     mars_df = mars_df.iloc[1:]
@@ -97,8 +93,6 @@ def scrape_mars_facts(browser):
 
 ################################ MARS HEMI IMAGES(4) SECTION ############################################################
 def scrape_mars_hemi(browser):
-    # executable_path = {'executable_path': ChromeDriverManager().install()}
-    # browser = Browser('chrome', **executable_path, headless=False)
     mars_hemi_url = 'https://marshemispheres.com'
     browser.visit(mars_hemi_url)
 
@@ -134,6 +128,6 @@ def scrape_mars_hemi(browser):
     # Return results
     return mars_hemi_image_urls
 
-# if __name__ == "__main__":
-print(scrape_all_pages())
+# This is just here if you need to troubleshoot again #
+# print(scrape_all_pages())
 

@@ -60,6 +60,10 @@ header {
     text-align: left;
 }
 
+th{
+    text-align: center;
+}
+
 #table-right{
     position: relative;
     float: right;

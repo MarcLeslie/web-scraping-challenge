@@ -8,11 +8,12 @@ h1 {
     text-align: center;
 }
 
+
 h1.logo{
     text-align: center;
 }
 
-.test{
+.get_data_button{
     text-align: center;
     align-items: center;
 }
@@ -72,11 +73,18 @@ header {
 
 /* BOTTOM 4 IMAGES */
 .bottom-img {
-    width: 170px; 
+    width: 225px; 
+    align-items: center;
     
 }
 
 .bottom-title{
-    font-size: 20px;
+    font-size: 22px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 0px;
+    padding-right: 0px;
+    word-wrap: break-word;
+    
 }
 /* BOTTOM 4 IMAGES */

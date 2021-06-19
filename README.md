@@ -1,6 +1,6 @@
-# File manifest (list of files included)
+### File manifest (list of files included)
 
-# Known issues 
+### Known issues 
 
-# Credits and acknowledgments
+### Credits and acknowledgments
 
